@@ -2,7 +2,7 @@
 include '../koneksi.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // $perpustakaan = $_POST['perpustakaan'];
+    $perpustakaan = $_POST['perpustakaan'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -14,9 +14,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $sql = "INSERT INTO user (perpus_id, username, password, email, nama_lengkap, alamat, role) VALUES ('$perpustakaan', '$username', '$hashed_password', '$email', '$namalengkap', '$alamat', '$role')";
 
     if (mysqli_query($koneksi, $sql)) {
-        header("location:../login.php");
+        header("location:../admin/pengguna.php");
     } else {
-        echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
+        echo "Error: " . $sql . "<br>" . mysqli_error($koneksi);
     }
 
     // Tutup koneksi ke database
