@@ -185,6 +185,7 @@ $result = mysqli_query($koneksi, $sql)
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+    <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="width:100%;margin-left:0%;padding:20px;background:#fff;border-radius:20px;;">
     <section class="content">
       <div class="container-fluid">
        <table class="table" style="margin: top 30px;">
@@ -201,7 +202,10 @@ $result = mysqli_query($koneksi, $sql)
         </tr>
       </thead>
       <tbody>
-      <?php $i=0; while ($row = mysqli_fetch_assoc($result)) : $i++; ?>
+      <?php 
+      $i=0; 
+      while ($row = mysqli_fetch_assoc($result)) : 
+      $i++; ?>
     <tr>
         <td><?= $i ?></td>
         <td><?= $row["nama_lengkap"] ?></td>

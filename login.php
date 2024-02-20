@@ -22,6 +22,8 @@ header('location: admin/index.php');
 elseif($data['role'] == 'petugas'){
 $_SESSION['id'] = $data['id'];
 $_SESSION['role'] = $data['role'];
+header('location: petugas/index.php');
+
 //echo"Masuk ke petugas";
 }
 elseif($data['role'] == 'peminjam'){

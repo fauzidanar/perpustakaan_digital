@@ -197,6 +197,7 @@ $result1 = mysqli_query($koneksi, $sql1);
     </section>
     <!-- Main content -->
     <section class="content d-flex flex-col">
+    <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="width:100%;margin-left:0%;padding:20px;background:#fff;border-radius:20px;;">
       <div class="container-fluid">
     <table class="table" style="margin-top:30px;width:90%; position:relative;left:50px;">
         <thead>
@@ -225,6 +226,7 @@ $result1 = mysqli_query($koneksi, $sql1);
                     <td>
                         <a href="edit/edit_buku.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">Edit</a>
                         <a href="../proses/proses_hapus_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                        <a href="input/input_ulasan.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm" style="background-color: #007bff;">ulas</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

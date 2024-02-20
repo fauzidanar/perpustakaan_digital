@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3308
--- Waktu pembuatan: 17 Jan 2024 pada 23.53
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 8.1.2
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 19 Feb 2024 pada 07.30
+-- Versi server: 10.4.28-MariaDB
+-- Versi PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,15 +36,15 @@ CREATE TABLE `buku` (
   `tahun_terbit` int(11) NOT NULL,
   `kategori_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `buku`
 --
 
 INSERT INTO `buku` (`id`, `perpus_id`, `judul`, `penulis`, `penerbit`, `tahun_terbit`, `kategori_id`, `created_at`) VALUES
-(1, 1, 'Dilan & Milea', 'Pandi Zulfikar', 'PT. Buku Indonesia', 2018, 1, '2024-01-17 13:32:19'),
-(2, 1, 'Suatu Hari yang Nikmat', 'Vanzul baik', 'Angkringan Milenial', 2024, 1, '2024-01-17 13:39:32');
+(1, 1, 'Laskar Pelangi', 'Andrea Hirata', 'Bentang Pustaka', 2005, 1, '2024-02-13 02:53:06'),
+(7, 1, 'Koala Kumal', 'Raditya Dika', 'Gagas media', 2015, 1, '2024-02-13 02:51:21');
 
 -- --------------------------------------------------------
 
@@ -57,7 +57,7 @@ CREATE TABLE `detail_peminjaman` (
   `peminjaman_id` int(11) NOT NULL,
   `buku_id` int(11) NOT NULL,
   `created_ad` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -69,14 +69,15 @@ CREATE TABLE `kategori_buku` (
   `id` int(11) NOT NULL,
   `nama_kategori` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `kategori_buku`
 --
 
 INSERT INTO `kategori_buku` (`id`, `nama_kategori`, `created_at`) VALUES
-(1, 'Religi', '0000-00-00 00:00:00');
+(1, 'religi', '2024-02-16 06:21:19'),
+(2, 'komedi', '2024-02-16 06:14:41');
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,7 @@ CREATE TABLE `koleksi_pribadi` (
   `user` int(11) NOT NULL,
   `buku` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -105,14 +106,24 @@ CREATE TABLE `peminjaman` (
   `tanggal_pengembalian` date NOT NULL,
   `status_peminjaman` enum('Dipinjam','Dikembalikan','','') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `peminjaman`
 --
 
 INSERT INTO `peminjaman` (`id`, `user`, `buku`, `tanggal_peminjaman`, `tanggal_pengembalian`, `status_peminjaman`, `created_at`) VALUES
-(1, 1, 1, '2024-01-12', '2024-01-13', 'Dikembalikan', '2024-01-17 02:59:59');
+(1, 1, 1, '2024-01-12', '2024-01-13', 'Dikembalikan', '2024-01-17 02:59:59'),
+(2, 19, 1, '2024-02-13', '0000-00-00', 'Dipinjam', '2024-02-13 04:05:46'),
+(3, 19, 1, '2024-02-13', '0000-00-00', 'Dipinjam', '2024-02-13 04:06:05'),
+(4, 19, 1, '2024-02-13', '0000-00-00', 'Dipinjam', '2024-02-13 04:21:16'),
+(5, 19, 1, '2024-02-13', '0000-00-00', 'Dipinjam', '2024-02-13 04:23:01'),
+(6, 19, 7, '2024-02-16', '0000-00-00', 'Dipinjam', '2024-02-16 06:31:11'),
+(7, 19, 1, '2024-02-16', '0000-00-00', 'Dipinjam', '2024-02-16 06:33:40'),
+(8, 19, 1, '2024-02-16', '0000-00-00', 'Dipinjam', '2024-02-16 06:37:11'),
+(9, 19, 1, '2024-02-19', '0000-00-00', 'Dipinjam', '2024-02-19 01:00:53'),
+(10, 37, 7, '2024-02-19', '0000-00-00', 'Dipinjam', '2024-02-19 01:31:48'),
+(11, 37, 1, '2024-02-19', '0000-00-00', 'Dipinjam', '2024-02-19 02:00:58');
 
 -- --------------------------------------------------------
 
@@ -126,7 +137,7 @@ CREATE TABLE `perpustakaan` (
   `alamat` varchar(100) NOT NULL,
   `no_tlp` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `perpustakaan`
@@ -148,7 +159,7 @@ CREATE TABLE `ulasan_buku` (
   `ulasan` text NOT NULL,
   `rating` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -166,18 +177,19 @@ CREATE TABLE `user` (
   `alamat` text NOT NULL,
   `role` enum('admin','petugas','peminjam','') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `perpus_id`, `username`, `password`, `email`, `nama_lengkap`, `alamat`, `role`, `created_at`) VALUES
-(1, 0, 'iweng', '$2a$12$lzrnN..vMjHnA0VCWa8yFuGT2MeAbulEZXQCKPF4KvF3zjlnC1rR.', 'ridwanbanjar1122@gmail.com', 'Ridwan', 'Pintusinga Banjar', 'admin', '2024-01-17 02:40:22'),
-(2, 1, 'adit', '$2y$10$tqyRF.LLf9VP7750L/VC4OhgwVKPEV2E5N59aXPYb4YR1ugaUqUrm', 'adit12@gmail.com', 'Raditya', 'Pintusinga Banjar', 'peminjam', '2024-01-17 03:31:10'),
-(3, 1, 'adam', '$2y$10$zmNTg3JeHtPOyt0Veb27qOytoW8tA7lGt3qbIUXlUtt/FRzxn7ZwG', 'adamsp12@gmail.com', 'Adam Suradi', 'Pintusinga Banjar', 'petugas', '2024-01-17 03:31:55'),
-(11, 1, 'test', '$2y$10$yezmqa/N4l82KeJRhPcFvOc1GIhtNsjB1iscC3hisU/TGCuHye4Hq', 'sdfdf@gmail.com', 'zahwan', 'waf', 'peminjam', '2024-01-17 03:07:04'),
-(13, 1, 'agus', '$2y$10$rM86ZqX5fR/OTgRwW20y9.aFoAfvelbTQK6PipYbxBCLYKrWt2iZ.', 'gusmet@gmail.com', 'Agus selamet', 'Banjar Kolot', 'petugas', '2024-01-17 10:13:46');
+(13, 1, 'agus', '$2y$10$rM86ZqX5fR/OTgRwW20y9.aFoAfvelbTQK6PipYbxBCLYKrWt2iZ.', 'gusmet@gmail.com', 'Agus selamet', 'Banjar Kolot', 'petugas', '2024-01-17 10:13:46'),
+(17, 1, 'uziw', '$2y$10$mA3zcDmzDNcfBWdTHyjXAewE8YDGp/QX5cRIV5mGEAPc8vru5F1im', 'uziw@gmail.com', 'fauzi danar zulfikar', 'cimaragas', 'admin', '2024-02-07 02:20:48'),
+(37, 1, 'adam', '$2y$10$2q9xaZp2RcZCUAdidPEdS.jTtBEC3I/6Qs.03lGY6znmL0AR65nXy', 'adam@gmail.com', 'adamzz', 'pintu singa\r\n', 'peminjam', '2024-02-19 01:27:07'),
+(38, 1, 'petugas', '$2y$10$ZBiHToZhcTWm9VYLC7SXxepdTEEz6vP3X0l751k8h0k.sWB7WFuqm', 'udin@gmail.com', 'udin', 'banjar', 'petugas', '2024-02-19 01:43:25'),
+(39, 1, 'kiki', '$2y$10$gelagjAFJU6t8g12D9Qpj.srLwMD1PYXxmUdkor25H1JSpB1kWCg.', 'jamal@gmail.com', 'kiki', 'bnjr\r\n', 'peminjam', '2024-02-19 02:01:47'),
+(40, 38, 'reza', '$2y$10$vItzrgFcorlvl1Fz.cUtyOqwKgsr3XbfLaY49R4Gxb0eR5ZL.FD5S', 'reza@gmail.com', 'rezaapriza', 'banjar', 'peminjam', '2024-02-19 02:25:33');
 
 --
 -- Indexes for dumped tables
@@ -239,7 +251,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_peminjaman`
@@ -251,7 +263,7 @@ ALTER TABLE `detail_peminjaman`
 -- AUTO_INCREMENT untuk tabel `kategori_buku`
 --
 ALTER TABLE `kategori_buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `koleksi_pribadi`
@@ -263,7 +275,7 @@ ALTER TABLE `koleksi_pribadi`
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `perpustakaan`
@@ -281,7 +293,7 @@ ALTER TABLE `ulasan_buku`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

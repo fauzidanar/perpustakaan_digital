@@ -1,7 +1,13 @@
-<?
+<?php 
 include '../koneksi.php';
+$sql4 = "SELECT ulasan_buku.*, user.nama_lengkap, buku.judul 
+         FROM ulasan_buku 
+         INNER JOIN user ON ulasan_buku.user = user.id
+         INNER JOIN buku ON ulasan_buku.buku = buku.id";
+$result4 = mysqli_query($koneksi, $sql4);
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +40,7 @@ include '../koneksi.php';
             margin-right: 1000px; /* Adjust the right margin as needed */
         }
     </style>
-  <title>Ulasan</title>
+  <title>Dashboard</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -59,7 +65,8 @@ include '../koneksi.php';
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style="overflow-x:hidden;">
 <div class="wrapper">
-        
+
+
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -88,8 +95,8 @@ include '../koneksi.php';
         </div>
       </div>
 
-     <!-- Sidebar Menu -->
-     <nav class="mt-2">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -154,6 +161,7 @@ include '../koneksi.php';
               </li>
             </ul>
           </li>
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -161,71 +169,45 @@ include '../koneksi.php';
     <!-- /.sidebar -->
   </aside>
 
+ 
+  <div class="content-wrapper" style="height:91.6vh; background-color: #fff; color:#161A30;">
+  <section class="content"> 
+  <h1 style="margin: 20px;">Ulasan</h1>
+  <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="width:100%;margin-left:0%;padding:20px;background:#fff;border-radius:20px;margin-top: 30px;">
+  <div class="container-fluid">
+     <table class="table" style="margin: top 30px;">
+    <thead>
+      <tr>
+       <th>No</th>
+        <th>Nama Pengulas</th>
+        <th>Buku</th>
+        <th>Ulasan</th>
+        <th>Rating</th>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Buku</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+      </tr>
+    </thead>
+    <tbody>
+    <?php $i = 0; while ($row = mysqli_fetch_assoc($result4)) : $i++; ?>
+  <tr>
+      <td><?= $i; ?></td>
+      <td><?= $row["nama_lengkap"]; ?></td>
+      <td><?= $row["judul"]; ?></td>
+      <td><?= $row["ulasan"]; ?></td>
+      <td><?= $row["rating"]; ?></td>
+      
+  </tr>
+<?php endwhile; ?>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-       
-        </div>
+</tbody>
+</table>
+    </div>      
+
+</section>
+
   </div>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
 <script src="../dashboard/plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="../dashboard/plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
 <script src="../dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="../dashboard/plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="../dashboard/plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="../dashboard/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="../dashboard/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="../dashboard/plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="../dashboard/plugins/moment/moment.min.js"></script>
-<script src="../dashboard/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="../dashboard/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="../dashboard/plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="../dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../dashboard/dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dashboard/dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../dashboard/dist/js/pages/dashboard.js"></script>
+<script src="../dashboard/dist/js/adminlte.min.js"></script>
 </body>
 </html>

@@ -123,6 +123,7 @@ $result2 = mysqli_query($koneksi, $sql2);
               </li>
             </ul>
           </li>
+        
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -200,6 +201,7 @@ $result2 = mysqli_query($koneksi, $sql2);
             <label for="status">Status :</label>
             <select name="status" class="form-control">
                 <option value="Dipinjam">Dipinjam</option>
+                <option value="Dipinjam">Dikembalikan</option>
             </select>
         </div>
         <div class="form-grup" style="margin-left: 40%;">

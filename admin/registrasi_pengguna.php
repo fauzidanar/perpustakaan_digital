@@ -1,6 +1,6 @@
 <?php 
 include '../koneksi.php';
-$sql = "SELECT user.*, perpustakaan.nama_perpus FROM user INNER JOIN  perpustakaan ON user.perpus_id=perpustakaan.id";
+$sql = "SELECT *  FROM perpustakaan ";
 $result = mysqli_query($koneksi, $sql)
 
 ?>

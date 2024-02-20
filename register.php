@@ -1,6 +1,8 @@
 <?php
 include 'koneksi.php';
 
+$sql = "SELECT * FROM perpustakaan";
+$result = mysqli_query($koneksi, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
