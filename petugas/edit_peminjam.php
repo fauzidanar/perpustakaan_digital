@@ -1,11 +1,9 @@
 <?php 
-include '../../koneksi.php';
+include '../koneksi.php';
 
 $id = $_GET['id'];
 $sql = "SELECT peminjaman.*, user.nama_lengkap, buku.judul FROM peminjaman INNER JOIN user ON peminjaman.user=user.id INNER JOIN buku ON peminjaman.buku=buku.id WHERE peminjaman.id=$id";
 $result = mysqli_query($koneksi, $sql);
-
-
 
 ?>
 <!DOCTYPE html>
@@ -48,23 +46,23 @@ $result = mysqli_query($koneksi, $sql);
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../dashboard/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../dashboard/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="../../dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="../dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="../../dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="../../dashboard/plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="../dashboard/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../dashboard/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../dashboard/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="../../dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="../dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="../../dashboard/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../dashboard/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="../../dashboard/plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style="overflow-x:hidden;">
@@ -105,7 +103,7 @@ $result = mysqli_query($koneksi, $sql);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../index.php" class="nav-link">
+                <a href="./index.php" class="nav-link">
                 <li class="nav-item menu-open">
                 <i class=" nav-icon fa-solid fa-house"></i>                  
                 <p>Dashboard</p>
@@ -116,55 +114,15 @@ $result = mysqli_query($koneksi, $sql);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../pengguna.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-users"></i>
-                  <p>Pengguna</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../peminjam.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-people-carry-box"></i>
-                  <p>Peminjaman</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../buku.php" class="nav-link">
+                <a href="buku_petugas.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-book"></i>
-                  <p>Buku</p>
+                  <p>buku</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../kategori.php" class="nav-link">
-                <i class="nav-icon fa-sharp fa-solid fa-layer-group"></i>
-                  <p>Kategori</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../ulasan.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-pen"></i>
-                  <p>Ulasan</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+          </ul>
+         </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -179,7 +137,7 @@ $result = mysqli_query($koneksi, $sql);
       <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="width:50%;margin-left:25%;padding:10px;background:#fff;border-radius:7px;">
        <div class="container-fluid">
         <h2 style="color:#161A30; text-align:center;">Dashboard</h2>
-         <form action="../../proses/proses_edit_peminjaman.php?id=<?= $data['id'] ?>" method="post">
+         <form action="proses_edit_peminjaman.php?id=<?= $data['id'] ?>" method="post">
             <div class="form-group">
                 <label for="nama_lengkap">Nama peminjam :</label>
                 <input type="text" class="form-control" name="nama_lengkap"  value="<?= $data['nama_lengkap'] ?>">
@@ -205,7 +163,7 @@ $result = mysqli_query($koneksi, $sql);
           </select>
             </div>
                 <div class="footer text-center">
-                <a href="../index.php"><button type="button" class="btn btn-secondary">Close</button></a>
+                <a href="index.php"><button type="button" class="btn btn-secondary">Close</button></a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
          </form>

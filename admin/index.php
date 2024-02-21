@@ -202,7 +202,6 @@ $result4 = mysqli_query($koneksi, $sql4);
             <div class="small-box bg-info">
               <div class="inner">
                 <h3><?php echo mysqli_num_rows($result1);?></h3>
-
                 <p>Total Buku</p>
               </div>
               <div class="icon">

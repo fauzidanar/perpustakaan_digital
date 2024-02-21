@@ -1,6 +1,21 @@
-<?
+<?php
 include '../koneksi.php';
 
+$sql1 = "SELECT * FROM buku";
+$result1 = mysqli_query($koneksi, $sql1);
+
+$sql2 = "SELECT * FROM user";
+$result2 = mysqli_query($koneksi, $sql2);
+
+$sql3 = "SELECT peminjaman.*, user.nama_lengkap,buku.judul, perpustakaan.nama_perpus 
+         FROM peminjaman
+        INNER JOIN user ON peminjaman.user =user.id
+        INNER JOIN buku ON peminjaman.buku =buku.id
+        INNER JOIN perpustakaan ON peminjaman.perpus_id =perpustakaan.id";
+$result3 = mysqli_query($koneksi, $sql3);
+
+$sql4 = "SELECT * FROM peminjaman";
+$result4 = mysqli_query($koneksi, $sql4);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +93,7 @@ include '../koneksi.php';
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-      <span class="brand-text font-weight-light">Hi Petugas</span>
+      <span class="brand-text font-weight-light">Hi petugas</span>
     </a>
 
     <!-- Sidebar -->
@@ -100,7 +115,7 @@ include '../koneksi.php';
                 <a href="./index.php" class="nav-link">
                 <li class="nav-item menu-open">
                 <i class=" nav-icon fa-solid fa-house"></i>                  
-                <p>dashboard</p>
+                <p>Dashboard</p>
                 </a>
               </li>
             </ul>
@@ -108,21 +123,15 @@ include '../koneksi.php';
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./buku_petugas.php" class="nav-link">
+                <a href="buku_petugas.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-book"></i>
                   <p>buku</p>
                 </a>
               </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./pengguna.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-file"></i>
-                  <p>Generate laporan</p>
-                </a>
-              </li>
-        </ul>
-      </nav>
+            </ul>
+          </li>
+          </ul>
+         </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -137,12 +146,7 @@ include '../koneksi.php';
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-          </div><!-- /.col -->
+         
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -157,14 +161,13 @@ include '../koneksi.php';
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>3</h3>
-
+                <h3><?php echo mysqli_num_rows($result1);?></h3>
                 <p>Total Buku</p>
               </div>
               <div class="icon">
                 <i class="fa-solid fa-book"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="buku.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -172,14 +175,14 @@ include '../koneksi.php';
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>3<sup style="font-size: 20px"></sup></h3>
+                <h3><?php echo mysqli_num_rows($result2);?><sup style="font-size: 20px"></sup></h3>
 
                 <p>Pengguna</p>
               </div>
               <div class="icon">
                 <i class="fa-solid fa-users"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="pengguna.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -187,21 +190,47 @@ include '../koneksi.php';
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>2</h3>
+                <h3><?php echo mysqli_num_rows($result4);?></h3>
 
                 <p>Peminjaman</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
- 
+              <a href="peminjam.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
   </div>
-
-
+  <table class="table" style="margin-top:30px;width:90%; position:relative;left:50px;">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Perpustakaan</th>
+                <th>Nama</th>
+                <th>Buku</th>
+                <th>Tanggal_peminjaman</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $i=0; while ($row = mysqli_fetch_assoc($result3)) :  $i++; ?>
+                <tr>
+                    <td><?= $i ?></td>
+                    <td><?= $row['nama_perpus'] ?></td>
+                    <td><?= $row['nama_lengkap'] ?></td>
+                    <td><?= $row['judul'] ?></td>
+                    <td><?= $row['tanggal_peminjaman'] ?></td>
+                    <td><?= $row['status_peminjaman']?></td>
+                    <td>
+                        <a href="edit_peminjam.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="delet/hapus_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                        <a href="../proses/proses_download.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm" style="background-color: green;">Download</a>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
