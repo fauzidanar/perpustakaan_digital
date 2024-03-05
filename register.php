@@ -70,13 +70,13 @@ $result = mysqli_query($koneksi, $sql);
         <div class="row">
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="submit" class="btn btn-primary btn-block">Daftar</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-      <a href="login.php" class="text-center">I already have a membership</a>
+      <a href="login.php" class="text-center">Saya sudah memiliki akun</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

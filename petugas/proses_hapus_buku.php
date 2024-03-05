@@ -17,6 +17,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     echo "ID tidak valid.";
 }
 
-header("Location: buku_pertugas.php");
+header("Location: buku_petugas.php");
 exit();
 ?>

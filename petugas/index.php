@@ -167,7 +167,6 @@ $result4 = mysqli_query($koneksi, $sql4);
               <div class="icon">
                 <i class="fa-solid fa-book"></i>
               </div>
-              <a href="buku.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -182,7 +181,6 @@ $result4 = mysqli_query($koneksi, $sql4);
               <div class="icon">
                 <i class="fa-solid fa-users"></i>
               </div>
-              <a href="pengguna.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -197,7 +195,6 @@ $result4 = mysqli_query($koneksi, $sql4);
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="peminjam.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>

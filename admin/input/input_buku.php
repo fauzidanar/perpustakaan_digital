@@ -173,6 +173,10 @@ $result3 = mysqli_query($koneksi, $sql3);
             <label for="judul">Judul buku:</label>
             <input type="text" name="judul" class="form-control" required>
         </div>
+        <div class="form-group">
+                <label for="cover">Cover :</label>
+                <input type="file" class="form-control" style="height:45px;" name="cover"  value="<?= $ruw['foto'] ?>" >
+            </div>
         <div class="form-grup">
             <label for="penulis">Penulis :</label>
             <input type="text" name="penulis" class="form-control" required>
@@ -185,6 +189,14 @@ $result3 = mysqli_query($koneksi, $sql3);
             <label for="tahun_terbit">Tahun terbit :</label>
             <input type="date" name="tahun_terbit" class="form-control" required>
         </div>
+        <div class="form-grup">
+            <label for="sinopsis">sinopsis :</label>
+            <input type="text" name="sinopsis" class="form-control" required>
+        </div>
+        <div class="form-group">
+                <label for="pdf">pdf :</label>
+                <input type="file" class="form-control" style="height:45px;" name="pdf"  value="<?= $ruw['pdf'] ?>" >
+            </div>
 
         <label>Kategori :</label>
         <select class='form-control' name='kategori' required>

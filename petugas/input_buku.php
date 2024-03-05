@@ -53,7 +53,7 @@ $result3 = mysqli_query($koneksi, $sql3);
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-      <span class="brand-text font-weight-light">Hi petugas</span>
+      <span class="brand-text font-weight-light">Hi Administrator</span>
     </a>
 
     <!-- Sidebar -->
@@ -72,10 +72,10 @@ $result3 = mysqli_query($koneksi, $sql3);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.php" class="nav-link">
+                <a href="index.php" class="nav-link">
                 <li class="nav-item menu-open">
                 <i class=" nav-icon fa-solid fa-house"></i>                  
-                <p>dashboard</p>
+                <p>Dashboard</p>
                 </a>
               </li>
             </ul>
@@ -83,11 +83,13 @@ $result3 = mysqli_query($koneksi, $sql3);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./buku_petugas.php" class="nav-link">
+                <a href="buku_petugas.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-book"></i>
-                  <p>buku</p>
+                  <p>Buku</p>
                 </a>
               </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -103,7 +105,7 @@ $result3 = mysqli_query($koneksi, $sql3);
               ?>
                 <div class="modal-header">
                     <h4 class="modal-title" id="editModalLabel">Tambah Buku</h4>
-                    <a href="../buku.php"><button type="button" class="close" aria-label="Close">
+                    <a href="buku_petugas.php"><button type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button></a>
                 </div>
@@ -131,6 +133,10 @@ $result3 = mysqli_query($koneksi, $sql3);
             <label for="judul">Judul buku:</label>
             <input type="text" name="judul" class="form-control" required>
         </div>
+        <div class="form-group">
+                <label for="cover">Cover :</label>
+                <input type="file" class="form-control" style="height:45px;" name="cover"  value="<?= $ruw['foto'] ?>" >
+            </div>
         <div class="form-grup">
             <label for="penulis">Penulis :</label>
             <input type="text" name="penulis" class="form-control" required>
@@ -143,6 +149,14 @@ $result3 = mysqli_query($koneksi, $sql3);
             <label for="tahun_terbit">Tahun terbit :</label>
             <input type="date" name="tahun_terbit" class="form-control" required>
         </div>
+        <div class="form-grup">
+            <label for="sinopsis">sinopsis :</label>
+            <input type="text" name="sinopsis" class="form-control" required>
+        </div>
+        <div class="form-group">
+                <label for="pdf">pdf :</label>
+                <input type="file" class="form-control" style="height:45px;" name="pdf"  value="<?= $ruw['pdf'] ?>" >
+            </div>
 
         <label>Kategori :</label>
         <select class='form-control' name='kategori' required>
@@ -219,15 +233,27 @@ $result3 = mysqli_query($koneksi, $sql3);
 </div>
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../dashboard/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="../dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
+<script src="../dashboard/dist/js/adminlte.js"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="../dashboard/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="../dashboard/plugins/raphael/raphael.min.js"></script>
+<script src="../dashboard/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="../dashboard/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- ChartJS -->
+<script src="../dashboard/plugins/chart.js/Chart.min.js"></script>
+
 <!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-<script src="path/to/bootstrap/js/bootstrap.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="../dashboard/dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="../dashboard/dist/js/pages/dashboard2.js"></script>
 <script>
         $(document).ready(function(){
             $('#editModal').modal('show');

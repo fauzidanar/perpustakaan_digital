@@ -56,17 +56,35 @@ echo "akun tidak ada";
   <link rel="stylesheet" href="dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dashboard/dist/css/adminlte.min.css">
+   <!-- Custom style -->
+   <style>
+    body {
+      background-image: url('perpus.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    /* Tambahkan lapisan transparan berwarna hitam */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Ubah nilai alpha (0.5) sesuai keinginan */
+    }
+  </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="admin/index.php"><b>Login</b></a>
+    <h2 href="admin/index.php"><b>Login</b></h2>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg"></p>
-
       <form action="login.php" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="username" placeholder="Username">
@@ -87,7 +105,7 @@ echo "akun tidak ada";
         <div class="row">
           <div class="col-8">
           <p class="mb-0">
-        <a href="register.php" class="text-center">Register</a>
+        <a href="register.php" class="text-center"> Daftar</a>
         </p>
           </div>
           <!-- /.col -->

@@ -203,7 +203,6 @@ $result1 = mysqli_query($koneksi, $sql1);
         <thead>
             <tr>
                 <th>No</th>
-
                 <th>Judul</th>
                 <th>Penerbit</th>
                 <th>Tahun Terbit</th>
@@ -212,13 +211,13 @@ $result1 = mysqli_query($koneksi, $sql1);
         </thead>
         <tbody>
             <?php $i=0; while ($row = mysqli_fetch_assoc($result)) :  $i++; ?>
-                <tr>
+            <tr>
                     <td><?= $i ?></td>
                     <td class='d-flex'>
+                      <img src="../asset/<?= $row['foto']?>" alt="" style="width: 50px; height: 55px; border-radius: 3px; margin-right:10px;">
                       <div>
-                        <b><?= $row['judul'] ?></b><br>
+                        <b><?= $row['judul'] ?></b><br> 
                         <?= $row['penulis'] ?>
-                        
                       </div>
                   </td>
                     <td><?= $row['penerbit'] ?></td>
@@ -226,7 +225,7 @@ $result1 = mysqli_query($koneksi, $sql1);
                     <td>
                         <a href="edit/edit_buku.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">Edit</a>
                         <a href="../proses/proses_hapus_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
-                        <a href="input/input_ulasan.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm" style="background-color: #007bff;">ulas</a>
+                        <a href="detail/detail_buku.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm" style="background-color: #007bff;">detail</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

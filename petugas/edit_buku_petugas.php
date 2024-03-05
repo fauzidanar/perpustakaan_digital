@@ -6,12 +6,9 @@ if(!$_SESSION["id"]){
   header("Location:../../login.php");
 }
 $id = $_GET["id"];
-$sql = "SELECT * FROM buku";
-$result = mysqli_query($koneksi, $sql);
-  
-
 $sql1 = "SELECT buku.*, kategori_buku.nama_kategori FROM buku INNER JOIN kategori_buku ON buku.kategori_id=kategori_buku.id WHERE buku.id='$id'";
 $result1 = mysqli_query($koneksi, $sql1);
+$ruw = mysqli_fetch_assoc($result1);
 
 $sql2 = "SELECT * FROM kategori_buku";
 $result2 = mysqli_query($koneksi, $sql2);
@@ -54,7 +51,7 @@ $result2 = mysqli_query($koneksi, $sql2);
    <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-      <span class="brand-text font-weight-light">Hi Administrator</span>
+      <span class="brand-text font-weight-light">Hi Petugas</span>
     </a>
 
     <!-- Sidebar -->
@@ -76,7 +73,7 @@ $result2 = mysqli_query($koneksi, $sql2);
                 <a href="./index.php" class="nav-link">
                 <li class="nav-item menu-open">
                 <i class=" nav-icon fa-solid fa-house"></i>                  
-                <p>dashboard</p>
+                <p>Dashboard</p>
                 </a>
               </li>
             </ul>
@@ -84,19 +81,14 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./buku_petugas.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-book"></i>
-                  <p>buku</p>
-                </a>
-              </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
                 <a href="./pengguna.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-file"></i>
-                  <p>Generate laporan</p>
+                <i class="nav-icon fa-solid fa-users"></i>
+                  <p>Pengguna</p>
                 </a>
               </li>
+            </ul>
+          </li>
+         
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -104,61 +96,65 @@ $result2 = mysqli_query($koneksi, $sql2);
     <!-- /.sidebar -->
   </aside>
 
-
   <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <?php if($result){
-                $ruw = mysqli_fetch_assoc($result1);
-                 
-              ?>
                 <div class="modal-header">            
                     <a href="buku_petugas.php"><button type="button" class="close" aria-label="Close" style="margin-left:430px">
                         <span aria-hidden="true">&times;</span>
                     </button></a>
                 </div>
-                  <div class="modal-body">
+                <div class="modal-body">
                     <!-- Isi formulir edit di sini -->
                     <form action="proses_edit_buku.php?id=<?= $ruw['id'] ?>" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="judul">Judul :</label>
-                <input type="text" class="form-control" name="judul"  value="<?= $ruw['judul'] ?>">
-            </div>
-            <div class="form-group">
-            </div>
-            <div class="form-group">
-                <label for="penulis">Penulis :</label>
-            <input type="text" class="form-control" name="penulis"  value="<?= $ruw['penulis'] ?>">
-            </div>
-            <div class="form-group">
-                <label for="penerbit">Penerbit :</label>
-                <input type="text" class="form-control" name="penerbit" value="<?= $ruw['penerbit']?>">
-            </div>
-            <div class="form-group">
-                <label for="tahun_terbit">Tahun terbit :</label>
-                <input type="number" class="form-control" name="tahun_terbit" value="<?= $ruw['tahun_terbit']?>">
-            </div>
-            <div class="form-group">
-           <label>Kategori :</label>
-        <select class='form-control' name='kategori' required>
-          <option value="<?=$ruw['id']?>"><?= $ruw['nama_kategori']?></option>
-          <?php
-             while ($rew = mysqli_fetch_assoc($result2)):
-          ?>  
-            <option value="<?= $rew['id'] ?>"><?= $rew['nama_kategori'];?></option>
-
-          <?php endwhile ?>
-        </select>
-            </div>
-                <div class="footer text-center">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
-         </form>
+                    <?php if($result1) { ?>
+                        <div class="form-group">
+                            <label for="judul">Judul :</label>
+                            <input type="text" class="form-control" name="judul"  value="<?= $ruw['judul'] ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="cover">Cover :</label>
+                            <input type="file" class="form-control" style="height:45px;" name="cover"  value="<?= $ruw['foto'] ?>" >
+                        </div>
+                        <div class="form-group">
+                            <label for="penulis">Penulis :</label>
+                            <input type="text" class="form-control" name="penulis"  value="<?= $ruw['penulis'] ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="penerbit">Penerbit :</label>
+                            <input type="text" class="form-control" name="penerbit" value="<?= $ruw['penerbit']?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="tahun_terbit">Tahun terbit :</label>
+                            <input type="number" class="form-control" name="tahun_terbit" value="<?= $ruw['tahun_terbit']?>">
+                        </div>
+                        <div class="form-grup">
+                         <label for="sinopsis">sinopsis :</label>
+                        <input type="text" name="sinopsis" class="form-control" required>
+                         </div>
+                        <div class="form-group">
+                       <label for="pdf">pdf :</label>
+                       <input type="file" class="form-control" style="height:45px;" name="pdf"  value="<?= $ruw['pdf'] ?>" >
+                      </div>
+                      
+                        <div class="form-group">
+                            <label>Kategori :</label>
+                            <select class='form-control' name='kategori' required>
+                                <option><?= $ruw['nama_kategori']?></option>
+                                <?php while ($rew = mysqli_fetch_assoc($result2)): ?>
+                                    <option value="<?= $rew['id'] ?>"><?= $rew['nama_kategori'];?></option>
+                                <?php endwhile ?>
+                            </select>
+                        </div>
+                        <div class="footer text-center">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
                  </div>
-                <?php 
-                    }  
-                ?>
             </div>
+            <?php
+         }
+         ?>
         </div>
     </div>
 
@@ -192,7 +188,7 @@ $result2 = mysqli_query($koneksi, $sql2);
             </tr>
         </thead>
         <tbody>
-            <?php $i=0; while ($row = mysqli_fetch_assoc($result)) :  $i++; ?>
+            <?php $i=0; $sql = "SELECT * FROM buku"; $result = mysqli_query($koneksi, $sql); while ($row = mysqli_fetch_assoc($result)) :  $i++; ?>
                 <tr>
                     <td><?= $i ?></td>
                     <td><?= $row['judul'] ?></td>
@@ -216,17 +212,17 @@ $result2 = mysqli_query($koneksi, $sql2);
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
+<script src="../../dist/js/demo.js"></script>
 <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
         $(document).ready(function(){
             $('#editModal').modal('show');
         });
-    </script>
+</script>
 </body>
 </html>
