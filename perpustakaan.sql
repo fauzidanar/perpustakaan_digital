@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 19 Feb 2024 pada 07.30
+-- Host: 127.0.0.1:3306
+-- Waktu pembuatan: 05 Mar 2024 pada 05.22
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -31,20 +31,27 @@ CREATE TABLE `buku` (
   `id` int(11) NOT NULL,
   `perpus_id` int(11) NOT NULL,
   `judul` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
   `penulis` varchar(255) NOT NULL,
   `penerbit` varchar(255) NOT NULL,
   `tahun_terbit` int(11) NOT NULL,
   `kategori_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `sinopsis` text NOT NULL,
+  `pdf` varchar(225) NOT NULL,
+  `stok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `buku`
 --
 
-INSERT INTO `buku` (`id`, `perpus_id`, `judul`, `penulis`, `penerbit`, `tahun_terbit`, `kategori_id`, `created_at`) VALUES
-(1, 1, 'Laskar Pelangi', 'Andrea Hirata', 'Bentang Pustaka', 2005, 1, '2024-02-13 02:53:06'),
-(7, 1, 'Koala Kumal', 'Raditya Dika', 'Gagas media', 2015, 1, '2024-02-13 02:51:21');
+INSERT INTO `buku` (`id`, `perpus_id`, `judul`, `foto`, `penulis`, `penerbit`, `tahun_terbit`, `kategori_id`, `created_at`, `sinopsis`, `pdf`, `stok`) VALUES
+(32, 1, 'Sebuah seni untuk bersikap bodo amat', 'buku.jpg', 'Mark manson', 'Harper one', 2016, 8, '2024-03-05 03:56:13', 'Belajar mengabaikan hal-hal yang tidak penting', '65e185b17693d.pdf', 2),
+(33, 1, 'Filosofi Teras', 'Filsafat-teras.jpg\r\n', 'Henry Manampiring', 'Kompas Media Nusantara', 2018, 8, '2024-03-05 03:56:36', 'Filosofi Teras, diawali dengan menceritakan tentang sebuah survei kekhawatiran nasional yang semakin masif sekaligus menyajikan tentang sekilas kehidupan si penulis yang dipenuhi oleh emosi negatif yang berlebihan', '65e18a7c9d868.pdf', 9),
+(34, 1, 'Tenggelamnya kapal Van Der Wijk', '65e1e016bac8d.jpg', 'Buya Hamka', 'Centrale Courant', 1939, 10, '2024-03-05 02:25:29', 'Pendekar Sutan membunuh Mamaknya (saudara laki-laki ibunya) karena masalah warisan, sehingga ia harus dihukum dengan diasingkan ke luar dari Batipuh, Minangkabau dan dipenjara di Cilacap selama 12 tahun', '65e1e016bac93.pdf', 8),
+(35, 1, 'Laskar Pelangi', '65e1fa1fb4af2.jpg', 'Andrea Hirata', 'Bentang pustaka', 2005, 9, '2024-03-05 02:16:23', '  Artikel ini telah tayang di Kompas.com dengan judul \"Sinopsis Novel Laskar Pelangi, Kisah Anak Daerah Dalam Menggapai Impiannya', '65e1fa1fb4af7.pdf', 9),
+(36, 1, 'Koala Kumal', '65e1fb1d5bc34.jpg', 'Raditya Dika', 'Gagas media', 2017, 8, '2024-03-05 03:42:50', 'Resensi novel Koala Kumal ini menceritakan anak muda yang bernama Raditya Dika. Dika kecil yang masih usia SD begitu sangat dimanja oleh orang tuanya, dan memiliki hobi bermain video game. Wajar kalau tidak punya teman bermain di luar rumah', '65e1fb1d5bc3a.pdf', 8);
 
 -- --------------------------------------------------------
 
@@ -77,7 +84,9 @@ CREATE TABLE `kategori_buku` (
 
 INSERT INTO `kategori_buku` (`id`, `nama_kategori`, `created_at`) VALUES
 (1, 'religi', '2024-02-16 06:21:19'),
-(2, 'komedi', '2024-02-16 06:14:41');
+(8, 'Non fiksi', '2024-03-01 07:37:39'),
+(9, 'fiksi', '2024-03-01 07:40:44'),
+(10, 'Drama Romantis', '2024-03-01 13:58:31');
 
 -- --------------------------------------------------------
 
@@ -92,6 +101,15 @@ CREATE TABLE `koleksi_pribadi` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `koleksi_pribadi`
+--
+
+INSERT INTO `koleksi_pribadi` (`id`, `user`, `buku`, `created_at`) VALUES
+(1, 49, 32, '2024-03-05 03:33:12'),
+(4, 49, 33, '2024-03-05 03:50:35'),
+(5, 49, 34, '2024-03-05 03:50:43');
+
 -- --------------------------------------------------------
 
 --
@@ -105,25 +123,31 @@ CREATE TABLE `peminjaman` (
   `tanggal_peminjaman` date NOT NULL,
   `tanggal_pengembalian` date NOT NULL,
   `status_peminjaman` enum('Dipinjam','Dikembalikan','','') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `perpus_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id`, `user`, `buku`, `tanggal_peminjaman`, `tanggal_pengembalian`, `status_peminjaman`, `created_at`) VALUES
-(1, 1, 1, '2024-01-12', '2024-01-13', 'Dikembalikan', '2024-01-17 02:59:59'),
-(2, 19, 1, '2024-02-13', '0000-00-00', 'Dipinjam', '2024-02-13 04:05:46'),
-(3, 19, 1, '2024-02-13', '0000-00-00', 'Dipinjam', '2024-02-13 04:06:05'),
-(4, 19, 1, '2024-02-13', '0000-00-00', 'Dipinjam', '2024-02-13 04:21:16'),
-(5, 19, 1, '2024-02-13', '0000-00-00', 'Dipinjam', '2024-02-13 04:23:01'),
-(6, 19, 7, '2024-02-16', '0000-00-00', 'Dipinjam', '2024-02-16 06:31:11'),
-(7, 19, 1, '2024-02-16', '0000-00-00', 'Dipinjam', '2024-02-16 06:33:40'),
-(8, 19, 1, '2024-02-16', '0000-00-00', 'Dipinjam', '2024-02-16 06:37:11'),
-(9, 19, 1, '2024-02-19', '0000-00-00', 'Dipinjam', '2024-02-19 01:00:53'),
-(10, 37, 7, '2024-02-19', '0000-00-00', 'Dipinjam', '2024-02-19 01:31:48'),
-(11, 37, 1, '2024-02-19', '0000-00-00', 'Dipinjam', '2024-02-19 02:00:58');
+INSERT INTO `peminjaman` (`id`, `user`, `buku`, `tanggal_peminjaman`, `tanggal_pengembalian`, `status_peminjaman`, `created_at`, `perpus_id`) VALUES
+(39, 0, 32, '2024-03-04', '2024-03-04', 'Dikembalikan', '2024-03-04 04:51:54', 1),
+(40, 49, 33, '2024-03-04', '2024-03-05', 'Dikembalikan', '2024-03-05 01:46:51', 1),
+(41, 49, 32, '2024-03-04', '2024-03-05', 'Dikembalikan', '2024-03-05 02:09:47', 1),
+(43, 49, 34, '2024-03-04', '2024-03-05', 'Dikembalikan', '2024-03-05 02:16:07', 1),
+(46, 51, 32, '2024-03-04', '2024-03-06', 'Dipinjam', '2024-03-04 07:42:52', 1),
+(48, 49, 36, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 03:42:41', 1),
+(49, 49, 32, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:25:10', 1),
+(50, 49, 34, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:16:07', 1),
+(51, 49, 35, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:16:23', 1),
+(52, 49, 32, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:25:10', 1),
+(53, 49, 33, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:25:33', 1),
+(54, 49, 34, '2024-03-05', '2024-03-07', 'Dipinjam', '2024-03-05 02:25:29', 1),
+(55, 49, 32, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:38:56', 1),
+(56, 49, 36, '2024-03-05', '2024-03-07', 'Dipinjam', '2024-03-05 03:42:50', 1),
+(57, 49, 32, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 03:56:13', 1),
+(58, 49, 33, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 03:56:36', 1);
 
 -- --------------------------------------------------------
 
@@ -161,6 +185,14 @@ CREATE TABLE `ulasan_buku` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `ulasan_buku`
+--
+
+INSERT INTO `ulasan_buku` (`id`, `user`, `buku`, `ulasan`, `rating`, `created_at`) VALUES
+(10, 39, 33, 'best', 5, '2024-03-01 17:06:51'),
+(21, 49, 34, 'mantap es', 2, '2024-03-05 02:48:03');
+
 -- --------------------------------------------------------
 
 --
@@ -184,12 +216,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `perpus_id`, `username`, `password`, `email`, `nama_lengkap`, `alamat`, `role`, `created_at`) VALUES
-(13, 1, 'agus', '$2y$10$rM86ZqX5fR/OTgRwW20y9.aFoAfvelbTQK6PipYbxBCLYKrWt2iZ.', 'gusmet@gmail.com', 'Agus selamet', 'Banjar Kolot', 'petugas', '2024-01-17 10:13:46'),
-(17, 1, 'uziw', '$2y$10$mA3zcDmzDNcfBWdTHyjXAewE8YDGp/QX5cRIV5mGEAPc8vru5F1im', 'uziw@gmail.com', 'fauzi danar zulfikar', 'cimaragas', 'admin', '2024-02-07 02:20:48'),
-(37, 1, 'adam', '$2y$10$2q9xaZp2RcZCUAdidPEdS.jTtBEC3I/6Qs.03lGY6znmL0AR65nXy', 'adam@gmail.com', 'adamzz', 'pintu singa\r\n', 'peminjam', '2024-02-19 01:27:07'),
-(38, 1, 'petugas', '$2y$10$ZBiHToZhcTWm9VYLC7SXxepdTEEz6vP3X0l751k8h0k.sWB7WFuqm', 'udin@gmail.com', 'udin', 'banjar', 'petugas', '2024-02-19 01:43:25'),
+(37, 1, 'adam', '$2y$10$/hgiAI5daTGwTWGNg8yd.eaI1V8w1oWJySNjawEBx2EdeBNLNwM/i', 'adam@gmail.com', 'adam', 'pintu singa\r\n', 'peminjam', '2024-02-28 01:20:59'),
 (39, 1, 'kiki', '$2y$10$gelagjAFJU6t8g12D9Qpj.srLwMD1PYXxmUdkor25H1JSpB1kWCg.', 'jamal@gmail.com', 'kiki', 'bnjr\r\n', 'peminjam', '2024-02-19 02:01:47'),
-(40, 38, 'reza', '$2y$10$vItzrgFcorlvl1Fz.cUtyOqwKgsr3XbfLaY49R4Gxb0eR5ZL.FD5S', 'reza@gmail.com', 'rezaapriza', 'banjar', 'peminjam', '2024-02-19 02:25:33');
+(45, 1, 'petugas', '$2y$10$7b7tWefhRV3g1gsSvRyQhOtV4.6.EYU4Yw1X.m78QDPG9ylULQP/G', 'jamal@gmail.com', 'fauzi', 'beber\r\n', 'petugas', '2024-02-19 13:30:10'),
+(48, 1, 'fauzi', '$2y$10$bN6uHk/usQrG8i1Ezc3dz.E.riSdzXh0k9uoG8g97bFiaHxU9oNtG', 'fauzidanar25@gmail.com', 'fauzidanarzulfikar', 'cimaragas', 'admin', '2024-02-28 05:10:20'),
+(49, 1, 'peminjam', '$2y$10$T6t/48uxfqgmuNlXbvKX9ufMBUeDc4udk.8DukqQslQ7Pe9.bT0UC', 'fauzidanarz@gmail.com', 'udin', 'bebas', 'peminjam', '2024-02-29 07:31:28'),
+(51, 1, 'admin', '$2y$10$D9LVjTMBZ8O8xakRT4aXl.O8Ma.uKFPfRfXCe/KrNsLwuFrGFDNLG', 'admin@gmail.com', 'admin', 'Cimaragas', 'admin', '2024-03-03 16:35:41');
 
 --
 -- Indexes for dumped tables
@@ -251,7 +283,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_peminjaman`
@@ -263,19 +295,19 @@ ALTER TABLE `detail_peminjaman`
 -- AUTO_INCREMENT untuk tabel `kategori_buku`
 --
 ALTER TABLE `kategori_buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `koleksi_pribadi`
 --
 ALTER TABLE `koleksi_pribadi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT untuk tabel `perpustakaan`
@@ -287,13 +319,13 @@ ALTER TABLE `perpustakaan`
 -- AUTO_INCREMENT untuk tabel `ulasan_buku`
 --
 ALTER TABLE `ulasan_buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
