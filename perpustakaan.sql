@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Waktu pembuatan: 05 Mar 2024 pada 05.22
+-- Waktu pembuatan: 05 Mar 2024 pada 14.08
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -47,11 +47,12 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`id`, `perpus_id`, `judul`, `foto`, `penulis`, `penerbit`, `tahun_terbit`, `kategori_id`, `created_at`, `sinopsis`, `pdf`, `stok`) VALUES
-(32, 1, 'Sebuah seni untuk bersikap bodo amat', 'buku.jpg', 'Mark manson', 'Harper one', 2016, 8, '2024-03-05 03:56:13', 'Belajar mengabaikan hal-hal yang tidak penting', '65e185b17693d.pdf', 2),
-(33, 1, 'Filosofi Teras', 'Filsafat-teras.jpg\r\n', 'Henry Manampiring', 'Kompas Media Nusantara', 2018, 8, '2024-03-05 03:56:36', 'Filosofi Teras, diawali dengan menceritakan tentang sebuah survei kekhawatiran nasional yang semakin masif sekaligus menyajikan tentang sekilas kehidupan si penulis yang dipenuhi oleh emosi negatif yang berlebihan', '65e18a7c9d868.pdf', 9),
+(32, 1, 'Sebuah seni untuk bersikap bodo amat', 'buku.jpg', 'Mark manson', 'Harper one', 2016, 8, '2024-03-05 12:44:13', 'Meski judulnya terkesan nyeleneh atau tidak serius, siapa sangka bahwa ceritanya mengandung banyak hikmah yang bisa dipetik.Buku ini cocok untuk yang ingin belajar lebih menerima setiap kesulitan yang datang', 'sebuah seni untuk bersikap bodo amat.pdf', 4),
+(33, 1, 'Belajar Pemograman Dengan CSS', 'Belajar pemrograman css.png', 'Muhammad Taufik Dwi Putra', 'Widina Media Utama', 2023, 0, '2024-03-05 12:43:01', 'Penulis juga menyajikan contoh-contoh dalam  kehidupan sehari-hari agar para pembaca bisa lebih memahami bagaimana  cara kerja dari materi yang disampaikan', 'belajar-pemrograman-lanjut-dengan-c++.pdf', 10),
 (34, 1, 'Tenggelamnya kapal Van Der Wijk', '65e1e016bac8d.jpg', 'Buya Hamka', 'Centrale Courant', 1939, 10, '2024-03-05 02:25:29', 'Pendekar Sutan membunuh Mamaknya (saudara laki-laki ibunya) karena masalah warisan, sehingga ia harus dihukum dengan diasingkan ke luar dari Batipuh, Minangkabau dan dipenjara di Cilacap selama 12 tahun', '65e1e016bac93.pdf', 8),
-(35, 1, 'Laskar Pelangi', '65e1fa1fb4af2.jpg', 'Andrea Hirata', 'Bentang pustaka', 2005, 9, '2024-03-05 02:16:23', '  Artikel ini telah tayang di Kompas.com dengan judul \"Sinopsis Novel Laskar Pelangi, Kisah Anak Daerah Dalam Menggapai Impiannya', '65e1fa1fb4af7.pdf', 9),
-(36, 1, 'Koala Kumal', '65e1fb1d5bc34.jpg', 'Raditya Dika', 'Gagas media', 2017, 8, '2024-03-05 03:42:50', 'Resensi novel Koala Kumal ini menceritakan anak muda yang bernama Raditya Dika. Dika kecil yang masih usia SD begitu sangat dimanja oleh orang tuanya, dan memiliki hobi bermain video game. Wajar kalau tidak punya teman bermain di luar rumah', '65e1fb1d5bc3a.pdf', 8);
+(35, 1, 'Laskar Pelangi', '65e1fa1fb4af2.jpg', 'Andrea Hirata', 'Bentang pustaka', 2005, 9, '2024-03-05 12:41:14', '  Artikel ini telah tayang di Kompas.com dengan judul \"Sinopsis Novel Laskar Pelangi, Kisah Anak Daerah Dalam Menggapai Impiannya', '65e1fa1fb4af7.pdf', 9),
+(36, 1, 'Koala Kumal', '65e1fb1d5bc34.jpg', 'Raditya Dika', 'Gagas media', 2017, 8, '2024-03-05 12:43:19', 'Resensi novel Koala Kumal ini menceritakan anak muda yang bernama Raditya Dika. Dika kecil yang masih usia SD begitu sangat dimanja oleh orang tuanya, dan memiliki hobi bermain video game. Wajar kalau tidak punya teman bermain di luar rumah', '65e1fb1d5bc3a.pdf', 7),
+(44, 1, 'Bisnis Digital', '65e718575032c.png', 'Rosdiana Sijabat, S.E., M.Si., Ph.D', 'MEDIA SAINS INDONESIA', 2022, 9, '2024-03-05 13:06:42', 'Bisnis di Era Revolusi Industri 4.0, Inovasi Bisnis, Sumber Daya Manusia dalam Bisnis, Mengelola Keuangan Bisnis, Etika dan Tanggungjawab Sosial dalam Bisnis, Kecerdasan Buatan dalam Bisnis, Tantangan dan Peluang Bisnis Digital Era Industri 4.0, Strategi Digital Marketing, E-Commerce, Search Engine Optimization, serta bab terakhir yaitu mengenai Search Engine Marketing dan Tantangan Ekonomi Digital Indonesia', '65e7185750332.pdf', 6);
 
 -- --------------------------------------------------------
 
@@ -83,7 +84,7 @@ CREATE TABLE `kategori_buku` (
 --
 
 INSERT INTO `kategori_buku` (`id`, `nama_kategori`, `created_at`) VALUES
-(1, 'religi', '2024-02-16 06:21:19'),
+(1, 'pemrograman', '2024-03-05 12:37:09'),
 (8, 'Non fiksi', '2024-03-01 07:37:39'),
 (9, 'fiksi', '2024-03-01 07:40:44'),
 (10, 'Drama Romantis', '2024-03-01 13:58:31');
@@ -108,7 +109,7 @@ CREATE TABLE `koleksi_pribadi` (
 INSERT INTO `koleksi_pribadi` (`id`, `user`, `buku`, `created_at`) VALUES
 (1, 49, 32, '2024-03-05 03:33:12'),
 (4, 49, 33, '2024-03-05 03:50:35'),
-(5, 49, 34, '2024-03-05 03:50:43');
+(6, 49, 36, '2024-03-05 12:44:28');
 
 -- --------------------------------------------------------
 
@@ -132,22 +133,17 @@ CREATE TABLE `peminjaman` (
 --
 
 INSERT INTO `peminjaman` (`id`, `user`, `buku`, `tanggal_peminjaman`, `tanggal_pengembalian`, `status_peminjaman`, `created_at`, `perpus_id`) VALUES
-(39, 0, 32, '2024-03-04', '2024-03-04', 'Dikembalikan', '2024-03-04 04:51:54', 1),
-(40, 49, 33, '2024-03-04', '2024-03-05', 'Dikembalikan', '2024-03-05 01:46:51', 1),
-(41, 49, 32, '2024-03-04', '2024-03-05', 'Dikembalikan', '2024-03-05 02:09:47', 1),
-(43, 49, 34, '2024-03-04', '2024-03-05', 'Dikembalikan', '2024-03-05 02:16:07', 1),
-(46, 51, 32, '2024-03-04', '2024-03-06', 'Dipinjam', '2024-03-04 07:42:52', 1),
-(48, 49, 36, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 03:42:41', 1),
-(49, 49, 32, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:25:10', 1),
-(50, 49, 34, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:16:07', 1),
-(51, 49, 35, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:16:23', 1),
-(52, 49, 32, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:25:10', 1),
 (53, 49, 33, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:25:33', 1),
 (54, 49, 34, '2024-03-05', '2024-03-07', 'Dipinjam', '2024-03-05 02:25:29', 1),
-(55, 49, 32, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 02:38:56', 1),
-(56, 49, 36, '2024-03-05', '2024-03-07', 'Dipinjam', '2024-03-05 03:42:50', 1),
-(57, 49, 32, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 03:56:13', 1),
-(58, 49, 33, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 03:56:36', 1);
+(56, 49, 36, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 12:40:56', 1),
+(59, 49, 35, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 12:41:14', 1),
+(60, 49, 33, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 11:41:45', 1),
+(61, 49, 32, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 11:57:57', 1),
+(62, 49, 32, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 11:57:57', 1),
+(63, 49, 33, '2024-03-05', '2024-03-05', 'Dikembalikan', '2024-03-05 12:01:23', 1),
+(64, 49, 33, '2024-03-05', '2024-03-07', 'Dipinjam', '2024-03-05 12:40:39', 1),
+(65, 49, 32, '2024-03-05', '2024-03-07', 'Dipinjam', '2024-03-05 12:44:13', 1),
+(66, 49, 44, '2024-03-05', '2024-03-07', 'Dipinjam', '2024-03-05 13:06:42', 1);
 
 -- --------------------------------------------------------
 
@@ -216,7 +212,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `perpus_id`, `username`, `password`, `email`, `nama_lengkap`, `alamat`, `role`, `created_at`) VALUES
-(37, 1, 'adam', '$2y$10$/hgiAI5daTGwTWGNg8yd.eaI1V8w1oWJySNjawEBx2EdeBNLNwM/i', 'adam@gmail.com', 'adam', 'pintu singa\r\n', 'peminjam', '2024-02-28 01:20:59'),
 (39, 1, 'kiki', '$2y$10$gelagjAFJU6t8g12D9Qpj.srLwMD1PYXxmUdkor25H1JSpB1kWCg.', 'jamal@gmail.com', 'kiki', 'bnjr\r\n', 'peminjam', '2024-02-19 02:01:47'),
 (45, 1, 'petugas', '$2y$10$7b7tWefhRV3g1gsSvRyQhOtV4.6.EYU4Yw1X.m78QDPG9ylULQP/G', 'jamal@gmail.com', 'fauzi', 'beber\r\n', 'petugas', '2024-02-19 13:30:10'),
 (48, 1, 'fauzi', '$2y$10$bN6uHk/usQrG8i1Ezc3dz.E.riSdzXh0k9uoG8g97bFiaHxU9oNtG', 'fauzidanar25@gmail.com', 'fauzidanarzulfikar', 'cimaragas', 'admin', '2024-02-28 05:10:20'),
@@ -283,7 +278,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_peminjaman`
@@ -301,13 +296,13 @@ ALTER TABLE `kategori_buku`
 -- AUTO_INCREMENT untuk tabel `koleksi_pribadi`
 --
 ALTER TABLE `koleksi_pribadi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT untuk tabel `perpustakaan`
@@ -319,7 +314,7 @@ ALTER TABLE `perpustakaan`
 -- AUTO_INCREMENT untuk tabel `ulasan_buku`
 --
 ALTER TABLE `ulasan_buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

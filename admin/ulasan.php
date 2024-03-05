@@ -183,7 +183,6 @@ $result4 = mysqli_query($koneksi, $sql4);
         <th>Buku</th>
         <th>Ulasan</th>
         <th>Rating</th>
-
       </tr>
     </thead>
     <tbody>

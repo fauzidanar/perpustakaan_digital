@@ -37,6 +37,7 @@ $result= mysqli_query($koneksi, $queryPeminjaman);
   <!-- Theme style -->
   <link rel="stylesheet" href="../dashboard/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">  
+  
 </head>
 <body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <!-- Navbar -->

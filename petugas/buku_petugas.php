@@ -125,7 +125,7 @@ $result1 = mysqli_query($koneksi, $sql1);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./buku_petugas.php.php" class="nav-link">
+                <a href="./buku_petugas.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-book"></i>
                   <p>buku</p>
                 </a>

@@ -222,7 +222,7 @@ $result4 = mysqli_query($koneksi, $sql4);
                     <td><?= $row['status_peminjaman']?></td>
                     <td>
                         <a href="edit_peminjam.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="delet/hapus_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                        <a href="hapus/hapus_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
                         <a href="../proses/proses_download.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm" style="background-color: green;">Download</a>
                 </tr>
             <?php endwhile; ?>

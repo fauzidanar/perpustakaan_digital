@@ -179,6 +179,7 @@ $result = mysqli_query($koneksi , $query);
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
+  
   <div class="content-wrapper d-flex flex-wrap" style="background-color: #fff; color:#161A30;">
   <?php while ($row = mysqli_fetch_assoc($result)) : ?>
     <div class="card ml-5" style="width:300px; position:relative;top:15px;border-radius:6px;">

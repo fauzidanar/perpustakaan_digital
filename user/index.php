@@ -223,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             <p class="card-text">Tahun Terbit: <?php echo $row['tahun_terbit']; ?></p>
             <p class="card-text">Stok Buku: <?= $row['stok']; ?></p>
             
-
+            
             <!--botom-->
             <a href="proses/proses_pinjam.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Pinjam</a>
             <a href="detail_/detail_buku_user.php?id=<?php echo $row['id']; ?>" class="btn btn-success">Detail</a>
