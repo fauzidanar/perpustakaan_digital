@@ -90,6 +90,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   <!-- Theme style -->
   <link rel="stylesheet" href="../dashboard/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">  
+
+<!-- jQuery -->
+<script src="../dashboard/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Add an input event listener to the search input
+        $("#searchInput").on("input", function() {
+            let searchTerm = $(this).val().toLowerCase(); // Get the value of the input and convert to lowercase
+
+            // Loop through each card
+            $(".card").each(function() {
+                let cardTitle = $(this).find(".card-title").text().toLowerCase(); // Get the text content of the card title and convert to lowercase
+
+                // Check if the card title contains the search term
+                if (cardTitle.includes(searchTerm)) {
+                    $(this).show(); // If yes, show the card
+                } else {
+                    $(this).hide(); // If no, hide the card
+                }
+            });
+        });
+    });
+</script>
+
+
 </head>
 <body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <!-- Navbar -->
@@ -171,6 +198,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>List Buku</h1>
+        <!-- Search Input -->
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Cari berdasarkan judul buku..." id="searchInput">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Cari</button>
+            </div>
+        </div>
     </section>
      
     <!-- Main content -->
