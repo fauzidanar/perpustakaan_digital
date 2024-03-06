@@ -26,6 +26,12 @@ $result2 = mysqli_query($koneksi, $query1);
 $query_buku = isset($bukuid) ? "SELECT * FROM buku WHERE kategori_id = $bukuid" : "SELECT * FROM buku";
 $resultbuku = mysqli_query($koneksi,$query_buku);
 
+$sql4 = "SELECT ulasan_buku.*, user.nama_lengkap, buku.judul 
+         FROM ulasan_buku 
+         INNER JOIN user ON ulasan_buku.user = user.id
+         INNER JOIN buku ON ulasan_buku.buku = buku.id";
+$result4 = mysqli_query($koneksi, $sql4);
+
 $username = $_SESSION['username'];  
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -90,6 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   <!-- Theme style -->
   <link rel="stylesheet" href="../dashboard/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">  
+
+ 
 
 <!-- jQuery -->
 <script src="../dashboard/plugins/jquery/jquery.min.js"></script>
@@ -197,9 +205,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <div class="content-wrapper" style="margin-top:-1px; background-color: #eeee; color:#161A30;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>List Buku</h1>
+        <h1>List Buku Perpus SMEA</h1>
         <!-- Search Input -->
-        <div class="input-group mb-3">
+        <div class="input-group mb-10" style="margin-top: 15px; background-color: #eeee; color:#161A30;">
             <input type="text" class="form-control" placeholder="Cari berdasarkan judul buku..." id="searchInput">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button">Cari</button>
@@ -222,7 +230,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             <p class="card-text">Penerbit: <?php echo $row['penerbit']; ?></p>
             <p class="card-text">Tahun Terbit: <?php echo $row['tahun_terbit']; ?></p>
             <p class="card-text">Stok Buku: <?= $row['stok']; ?></p>
-            
+              
+           
             
             <!--botom-->
             <a href="proses/proses_pinjam.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Pinjam</a>
@@ -244,13 +253,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
     </div>
 </div>
-
             <?php endwhile;?>
         </div>
         <!-- /.row -->
     </section>
     <!-- /.content -->
 </div>
+<!--tambah ulasan -->
+<div class="content-wrapper" style="height: 91.6vh; background-color: #fff; color: #161A30;">
+    <section class="content">
+    <h1 style="margin: 20px; text-align: center; margin-bottom:-50px;">Ulasan</h1>
+        <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="width: 100%; margin-left: 0%; padding: 20px; background: #fff; border-radius: 20px; margin-top: 30px;">
+
+            <div class="container-fluid">
+                <table class="table table-striped table-bordered" style="margin-top: 30px;">
+                    <thead>
+                        <tr style="background-color: #007bff; color: #fff;">
+                            <th style="text-align: center;">No</th>
+                            <th style="text-align: center;">Nama Pengulas</th>
+                            <th style="text-align: center;">Buku</th>
+                            <th style="text-align: center;">Ulasan</th>
+                            <th style="text-align: center;">Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 0;
+                        while ($row = mysqli_fetch_assoc($result4)) : $i++; ?>
+                            <tr>
+                                <td style="text-align: center;"><?= $i; ?></td>
+                                <td><?= $row["nama_lengkap"]; ?></td>
+                                <td><?= $row["judul"]; ?></td>
+                                <td><?= $row["ulasan"]; ?></td>
+                                <td style="text-align: center;"><?= $row["rating"]; ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
 
 
 <!-- REQUIRED SCRIPTS -->

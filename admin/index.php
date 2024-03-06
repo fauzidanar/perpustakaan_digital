@@ -71,6 +71,7 @@ $result4 = mysqli_query($koneksi, $sql4);
   <!-- summernote -->
   <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style="overflow-x:hidden;">
 <div class="wrapper">
@@ -250,6 +251,7 @@ $result4 = mysqli_query($koneksi, $sql4);
                 <th>Nama</th>
                 <th>Buku</th>
                 <th>Tanggal_peminjaman</th>
+                <th>Tanggal_pengembalian</th>
                 <th>Status</th>
                 <th>Aksi</th>
             </tr>
@@ -262,6 +264,7 @@ $result4 = mysqli_query($koneksi, $sql4);
                     <td><?= $row['nama_lengkap'] ?></td>
                     <td><?= $row['judul'] ?></td>
                     <td><?= $row['tanggal_peminjaman'] ?></td>
+                    <td><?= $row['tanggal_pengembalian'] ?></td>
                     <td><?= $row['status_peminjaman']?></td>
                     <td>
                         <a href="edit/edit_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>

@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
     $checkPeminjamanResult = mysqli_query($koneksi, $checkPeminjamanQuery);
 
     if (mysqli_num_rows($checkPeminjamanResult) >= 2) {
-        // Jika buku sudah dipinjam lebih dari dua kali oleh pengguna, beri pesan kesalahan
+        // Jika buku sudah dipinjam lebih dari tiga kali oleh pengguna, beri pesan kesalahan
         echo "Anda sudah meminjam buku ini sebanyak tiga kali.";
         exit();
     }

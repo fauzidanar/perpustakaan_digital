@@ -121,7 +121,7 @@ $result = mysqli_query($koneksi, $sql)
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="./peminjam.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-book"></i>
+                <i class="nav-icon fa-solid fa-people-carry-box"></i>
                   <p>Peminjaman</p>
                 </a>
               </li>
@@ -133,6 +133,26 @@ $result = mysqli_query($koneksi, $sql)
                 <a href="./buku.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-book"></i>
                   <p>Buku</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item menu-open">
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./kategori.php" class="nav-link">
+                <i class="nav-icon fa-sharp fa-solid fa-layer-group"></i>
+                  <p>Kategori</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item menu-open">
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./ulasan.php" class="nav-link">
+                <i class="nav-icon fa-solid fa-pen"></i>
+                  <p>Ulasan</p>
                 </a>
               </li>
             </ul>
@@ -163,7 +183,11 @@ $result = mysqli_query($koneksi, $sql)
     <section class="content">
       <?php $data=mysqli_fetch_assoc($result); ?>
       <div class="container-fluid">
-        
+      <div class="modal-header">            
+                    <a href="pengguna.php"><button type="button" class="close" aria-label="Close" style="margin-left:1250px">
+                        <span aria-hidden="true">&times;</span>
+                    </button></a>
+                </div>
       <form action="../proses/proses_edit_pengguna.php?id=<?= $data['id'] ?>" method="post">
             <div class="form-group">
                 <label for="nama_lengkap">Nama Lengkap :</label>

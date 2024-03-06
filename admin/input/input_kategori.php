@@ -87,7 +87,8 @@ $result2 = mysqli_query($koneksi, $sql2);
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+   <!-- Main Sidebar Container -->
+   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <span class="brand-text font-weight-light">Hi Administrator</span>
@@ -131,7 +132,7 @@ $result2 = mysqli_query($koneksi, $sql2);
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="./peminjam.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-pen-to-square"></i>
+                <i class="nav-icon fa-solid fa-people-carry-box"></i>
                   <p>Peminjaman</p>
                 </a>
               </li>
@@ -150,29 +151,19 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./ulasan.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-comments"></i>
-                  <p>Ulasan Buku</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./laporan.php" class="nav-link">
-                <i class=" nav-icon fa-solid fa-file-arrow-down"></i>
-                  <p>Generate Laporan</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./Kategori.php" class="nav-link">
-                <i class=" nav-icon fa-solid fa-table-list"></i>
+                <a href="./kategori.php" class="nav-link">
+                <i class="nav-icon fa-sharp fa-solid fa-layer-group"></i>
                   <p>Kategori</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item menu-open">
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./ulasan.php" class="nav-link">
+                <i class="nav-icon fa-solid fa-pen"></i>
+                  <p>Ulasan</p>
                 </a>
               </li>
             </ul>

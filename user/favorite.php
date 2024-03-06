@@ -83,43 +83,74 @@ $result = mysqli_query($koneksi , $query);
 
 </head>
 <style>
-    .foto {
-      overflow: hidden;
-      width: 100%;
-      height: 300px; /* Tetapkan ketinggian tetap untuk gambar */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .foto img {
-      max-width: 100%;
-      min-width: 100%;
-      height: 100%; /* Mengisi tinggi div untuk gambar */
-      transition: 0.3s linear;
-    }
-    .descrip {
-      height: 300px; /* Tetapkan ketinggian tetap untuk deskripsi */
-      overflow: hidden;
-      
-    }
-    .foto:hover img{
-      transform:scale(0.74);
+   /* Gaya untuk kontainer gambar */
+.foto {
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px; /* Sudut bulat */
+  position: relative;
 
-    }
+}
+
+/* Gaya untuk gambar */
+.foto img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; /* Memastikan semua gambar memiliki dimensi yang sama tanpa merusak rasio aspek */
+  transition: transform 0.3s ease; /* Efek transisi saat hover */
+}
+
+/* Gaya untuk kontainer gambar */
+.foto {
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px; /* Sudut bulat */
+  position: relative;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Bayangan dengan blur radius 20px */
+}
+
+/* Gaya untuk gambar */
+.foto img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; /* Memastikan semua gambar memiliki dimensi yang sama tanpa merusak rasio aspek */
+  transition: transform 0.3s ease; /* Efek transisi saat hover */
+}
+
+/* Efek scaling saat hover 
+.foto:hover img {
+  transform: scale(1.1);
+}
+ */
+
 </style>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" style="overflow-x:hidden;">
 <div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand" style="background-color:#fff">
+ 
+   <!-- Navbar -->
+   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+    </ul>
+
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" onclick="return confirm('Apakah Anda yakin ingin keluar?')" href="../logout.php">
-          <i class="fa-solid fa-arrow-right-from-bracket" style="color:#7077A1;"></i>
-        </a>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" href="../logout.php" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </li>
     </ul>
-  </nav>
+</nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->

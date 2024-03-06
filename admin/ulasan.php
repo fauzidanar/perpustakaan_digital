@@ -62,6 +62,8 @@ $result4 = mysqli_query($koneksi, $sql4);
   <!-- summernote -->
   <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style="overflow-x:hidden;">
 <div class="wrapper">

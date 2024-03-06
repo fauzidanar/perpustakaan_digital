@@ -127,14 +127,14 @@ $review = mysqli_query($koneksi, $view);
     <div class="foto">
       <img src="../asset/<?=$row['foto']?>" alt="" style="width:250px;height:430px;object-fit:cover; margin-top:-20px">
     </div>
-    <div class="desc d-flex " style="position: absolute; bottom:460px;left:700px">
+    <div class="desc d-flex " style="position: absolute; bottom:600px;left:700px">
       <h4><b><?= $row['judul'] ?></b></h4>
     </div>
-    <div class="d-flex" style="position: absolute; bottom:420px;left:700px">
+    <div class="d-flex" style="position: absolute; bottom:550px;left:700px">
         <p class="mr-1"><?= $row['penulis'] ?> | </p>
         <p><?= $row['penerbit'] ?></p>
     </div>
-        <p style="position: absolute; bottom:390px;left:700px">Tahun terbit : <?= $row['tahun_terbit'] ?></p>
+        <p style="position: absolute; bottom:500px;left:700px">Tahun terbit : <?= $row['tahun_terbit'] ?></p>
 
        <form action="proses/proses_ulasan.php" method="post"> 
         <div class="ulasan">
@@ -142,17 +142,17 @@ $review = mysqli_query($koneksi, $view);
             <input type="hidden" name="buku" value="<?= $id ?>">
             <input type="hidden" name="user" value="<?= $userId ?>">
           </div>
-          <div class="form_group" style="position: absolute; bottom:280px;left:700px">
+          <div class="form_group" style="position: absolute; bottom:380px;left:700px">
             <p class="mb-1"><b>Ulasan :</b></p>
             <textarea name="ulasan" cols="58" rows="3" placeholder="Ulas buku" style="width:100%; padding:3px"></textarea>
           </div>
-          <div class="form_group" style="position: absolute; bottom:200px;left:700px; width:450px;">
+          <div class="form_group" style="position: absolute; bottom:300px;left:700px; width:450px;">
             <p class="mb-1"><b>Rating :</b></p>
             <input type="text" name="rating" class="form-control" placeholder="Rating 1-5">
           </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" style="position:relative; left:300px; bottom:90px">Ulas Buku</button>
+            <button type="submit" class="btn btn-primary" style="position:relative; left:300px; bottom:70px">Ulas Buku</button>
         </div>
         </form>
         

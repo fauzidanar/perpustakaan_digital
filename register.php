@@ -17,11 +17,30 @@ $result = mysqli_query($koneksi, $sql);
   <link rel="stylesheet" href="dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dashboard/dist/css/adminlte.min.css">
+  <style>
+    body {
+      background-image: url('perpus.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    /* Tambahkan lapisan transparan berwarna hitam */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Ubah nilai alpha (0.5) sesuai keinginan */
+    }
+  </style>
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="dashboard/index.php"><b>Registrasi</b></a>
+    <h2 href="dashboard/index.php"><b>Registrasi</b></ah2>
+
   </div>
 
   <div class="card">
