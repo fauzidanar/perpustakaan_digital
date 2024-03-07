@@ -201,12 +201,13 @@ $result4 = mysqli_query($koneksi, $sql4);
   </div>
   <table class="table" style="margin-top:30px;width:90%; position:relative;left:50px;">
         <thead>
-            <tr>
+            <tr> 
                 <th>No</th>
                 <th>Perpustakaan</th>
                 <th>Nama</th>
                 <th>Buku</th>
                 <th>Tanggal_peminjaman</th>
+                <th>Tanggal_pengembalian</th>
                 <th>Status</th>
                 <th>Aksi</th>
             </tr>
@@ -219,6 +220,7 @@ $result4 = mysqli_query($koneksi, $sql4);
                     <td><?= $row['nama_lengkap'] ?></td>
                     <td><?= $row['judul'] ?></td>
                     <td><?= $row['tanggal_peminjaman'] ?></td>
+                    <td><?= $row['tanggal_pengembalian'] ?></td>
                     <td><?= $row['status_peminjaman']?></td>
                     <td>
                         <a href="edit_peminjam.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>

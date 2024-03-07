@@ -213,7 +213,7 @@ $result = mysqli_query($koneksi , $query);
   
   <div class="content-wrapper d-flex flex-wrap" style="background-color: #fff; color:#161A30;">
   <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-    <div class="card ml-5" style="width:300px; position:relative;top:15px;border-radius:6px;">
+    <div class="card ml-5" style="width:300px; height:550px; position:relative;top:15px;border-radius:6px;">
         <div class="foto">
             <img src="../asset/<?= $row['foto'] ?>" alt="">
         </div>
@@ -223,11 +223,12 @@ $result = mysqli_query($koneksi , $query);
             <p><?= $row['penerbit'] ?></p>
             <p>Tahun terbit: <?= $row['tahun_terbit'] ?></p>
 
-            <a href="proses/proses_pinjam.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Pinjam</a>
-            <a href="detail_/detail_buku_user.php?id=<?php echo $row['id']; ?>" class="btn btn-success">Detail</a>
-            <a href="favorite.php?id=<?= $row['id'] ?>&action=delete" style="margin-left:240px margin-right: 200px;"
-            class="btn btn-sm btn-secondary" onclick="return confirm('Yakin menghapus buku ini dari favorit')">
-            <i class="fa-solid fa-star"></i></a>
+            <a href="proses/proses_pinjam.php?id=<?php echo $row['id']; ?>" class="btn btn-primary" style="margin-right: 5px;">Pinjam</a>
+            <a href="detail_/detail_buku_user.php?id=<?php echo $row['id']; ?>" class="btn btn-success" style="margin-right: 5px;">Detail</a>
+            <a href="favorite.php?id=<?= $row['id'] ?>&action=delete" class="btn btn-secondary" style="margin-right: 5px;" onclick="return confirm('Yakin menghapus buku ini dari favorit')">
+           <i class="fa-solid fa-star"></i>
+          </a>
+
         </div>
     </div>
     <?php endwhile; ?>

@@ -191,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
               <li class="nav-item">
                 <a href="favorite.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-star"></i>
-                  <p>Favorite</p>
+                  <p>Favorit</p>
                 </a>
               </li>
             </ul>
@@ -293,8 +293,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
     </section>
 </div>
-
-
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->

@@ -26,6 +26,13 @@ $view = "SELECT user.nama_lengkap, ulasan_buku.ulasan, ulasan_buku.rating
          WHERE ulasan_buku.buku = '$id'";
 $review = mysqli_query($koneksi, $view);
 
+$sql4 = "SELECT ulasan_buku.*, user.nama_lengkap, buku.judul 
+         FROM ulasan_buku 
+         INNER JOIN user ON ulasan_buku.user = user.id
+         INNER JOIN buku ON ulasan_buku.buku = buku.id";
+$result4 = mysqli_query($koneksi, $sql4); 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +50,8 @@ $review = mysqli_query($koneksi, $view);
   <!-- Theme style -->
   <link rel="stylesheet" href="../dashboard/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  
 </head>
 <body class="hold-transition sidebar-mini" style="overflow-y:hidden;">
 <div class="wrapper">
@@ -106,7 +115,7 @@ $review = mysqli_query($koneksi, $view);
               <li class="nav-item">
                 <a href="favorite.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-star"></i>
-                  <p>Favorite</p>
+                  <p>Favorit</p>
                 </a>
               </li>
             </ul>
@@ -119,7 +128,7 @@ $review = mysqli_query($koneksi, $view);
   <!-- Isi buku -->
   <div class="content-wrapper" style="background-color: #fff; color:#161A30;">
   <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-  <div class="row bg-body-tertiary shadow" style="width:70%;height:470px;margin-left:160px;margin-top:57px;">
+  <div class="row bg-body-tertiary shadow" style="width:60%;height:470px;margin-left:160px;margin-top:57px;">
   <div class="wrap p-3">
     <a href="peminjaman.php" style="position:relative;left:475px"><button type="button" class="close" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -147,20 +156,21 @@ $review = mysqli_query($koneksi, $view);
             <textarea name="ulasan" cols="58" rows="3" placeholder="Ulas buku" style="width:100%; padding:3px"></textarea>
           </div>
           <div class="form_group" style="position: absolute; bottom:300px;left:700px; width:450px;">
-            <p class="mb-1"><b>Rating :</b></p>
-            <input type="text" name="rating" class="form-control" placeholder="Rating 1-5">
+            <p class="mb-1"><b>Rating 1-5 :</b></p>
+            <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required>
           </div>
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary" style="position:relative; left:300px; bottom:70px">Ulas Buku</button>
         </div>
-        </form>
-        
+        </form>         
     </div>
   </div>
     <?php endwhile; ?>
-  </div>
+  </div> 
 </div>
+
+
 <!-- ./wrapper -->
 
 <!-- jQuery -->

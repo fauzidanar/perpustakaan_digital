@@ -87,7 +87,7 @@ if(isset($_GET['id'])) {
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.php" class="nav-link">
+                <a href="../index.php" class="nav-link">
                 <li class="nav-item menu-open">
                 <i class=" nav-icon fa-solid fa-house"></i>                  
                 <p>Home</p>
@@ -98,7 +98,7 @@ if(isset($_GET['id'])) {
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="peminjam.php" class="nav-link">
+                <a href="../peminjaman.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-book-bookmark"></i>
                   <p>Peminjaman</p>
                 </a>
@@ -108,7 +108,7 @@ if(isset($_GET['id'])) {
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="favorite.php" class="nav-link">
+                <a href="../favorite.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-star"></i>
                   <p>Favorite</p>
                 </a>

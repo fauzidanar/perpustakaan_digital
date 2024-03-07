@@ -39,6 +39,7 @@ $result4 = mysqli_query($koneksi, $sql4);
         .nav-link {
             margin-right: 1000px; /* Adjust the right margin as needed */
         }
+        
     </style>
   <title>Dashboard</title>
   <!-- Google Font: Source Sans Pro -->
@@ -172,40 +173,47 @@ $result4 = mysqli_query($koneksi, $sql4);
   </aside>
 
  
-  <div class="content-wrapper" style="height:91.6vh; background-color: #fff; color:#161A30;">
+  <div class="content-wrapper" style="background-color: #f9f9f9; padding: 20px;">
   <section class="content"> 
-  <h1 style="margin: 20px;">Ulasan</h1>
-  <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="width:100%;margin-left:0%;padding:20px;background:#fff;border-radius:20px;margin-top: 30px;">
-  <div class="container-fluid">
-     <table class="table" style="margin: top 30px;">
-    <thead>
-      <tr>
-       <th>No</th>
-        <th>Nama Pengulas</th>
-        <th>Buku</th>
-        <th>Ulasan</th>
-        <th>Rating</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php $i = 0; while ($row = mysqli_fetch_assoc($result4)) : $i++; ?>
-  <tr>
-      <td><?= $i; ?></td>
-      <td><?= $row["nama_lengkap"]; ?></td>
-      <td><?= $row["judul"]; ?></td>
-      <td><?= $row["ulasan"]; ?></td>
-      <td><?= $row["rating"]; ?></td>
-      
-  </tr>
-<?php endwhile; ?>
-
-</tbody>
-</table>
-    </div>      
-
-</section>
-
-  </div>
+    <h1 class="text-center mb-4">Ulasan</h1>
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Pengulas</th>
+                  <th>Buku</th>
+                  <th>Ulasan</th>
+                  <th>Rating</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i = 0; while ($row = mysqli_fetch_assoc($result4)) : $i++; ?>
+                <tr>
+                  <td><?= $i; ?></td>
+                  <td><?= $row["nama_lengkap"]; ?></td>
+                  <td><?= $row["judul"]; ?></td>
+                  <td><?= $row["ulasan"]; ?></td>
+                  <td><?= $row["rating"]; ?></td>
+                  <td class="text-center">
+                    <a href="delet/hapus_ulasan.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </td>
+                </tr>
+                <?php endwhile; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 </div>
 <script src="../dashboard/plugins/jquery/jquery.min.js"></script>
 <script src="../dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
